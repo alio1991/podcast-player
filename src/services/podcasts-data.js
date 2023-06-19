@@ -29,5 +29,52 @@ export async function getPodcastDetail(podcastId){
     .then(response => {
       if (response.ok) return response.json()
       throw new Error('Network response was not ok.')
-    }).then(res => res?.contents)
+    }).then(async res => {
+        const parsedData = JSON.parse(res?.contents)
+        return {...parsedData.results[0], ...await getPodcastFeed(parsedData.results[0].feedUrl), }
+    })
+}
+
+async function getPodcastFeed(feed){
+    return await fetch(`https://api.allorigins.win/get?charset=ISO-8859-1&url=${feed}`)
+        .then((response) => response.json())
+        .then((rawData) =>  new window.DOMParser().parseFromString(rawData.contents,'text/xml'))
+        .then((data) => {
+            if (!data) {
+                throw new Error('Data could not be retrieved from the API')
+            }
+            return getEpisodes(data)
+        })
+}
+
+function getEpisodes(data){
+    const formattedEpisodes = {
+        description: '',
+        episodes: [],
+    }
+    const items = data.querySelectorAll('item')
+    const description = data.getElementsByTagName('itunes:summary').length > 0
+        ? data.getElementsByTagName('itunes:summary')
+        : data.getElementsByTagName('description')
+
+    formattedEpisodes.description = description[0].innerHTML
+
+    items.forEach((element) => {
+        const id =
+            element.getElementsByTagName('omny:clipId')[0]?.innerHTML ||
+            element.getElementsByTagName('guid')[0].innerHTML
+        const episode = {
+            id: id.replace('<![CDATA[', '').replace(']]>', ''),
+            title:
+            element.getElementsByTagName('itunes:title')[0]?.innerHTML ||
+            element.getElementsByTagName('title')[0].innerHTML,
+            date: element.getElementsByTagName('pubDate')[0].innerHTML,
+            duration: element.getElementsByTagName('itunes:duration')[0].innerHTML,
+            description: element.getElementsByTagName('description')[0].innerHTML,
+            audio: element.getElementsByTagName('enclosure')[0].getAttribute('url'),
+        }
+
+        formattedEpisodes.episodes.push(episode)
+    })
+    return formattedEpisodes
 }
