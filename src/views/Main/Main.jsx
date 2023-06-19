@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Main.scss';
-import { getPodcastsData } from '../../services/podcasts-data';
+import { getPodcastsData, podcastsData } from '../../services/podcasts-data';
 import PodcastCard from '../../components/PodcastCard/PodcastCard';
 
 function Main() {
@@ -9,7 +9,12 @@ function Main() {
     const [filteredEntries, setfilteredEntries] = useState([])
 
     useEffect(() => {
-        getPodcastsInfo()
+        podcastsData.subscribe(podcastsValue => {
+            if(podcastsValue){
+                setPodcastEntries(podcastsValue.feed.entry)
+                setfilteredEntries(podcastsValue.feed.entry)
+            }
+        })
     }, []);
     
     return (
@@ -29,12 +34,6 @@ function Main() {
         setfilteredEntries(filterText==="" ? podcastEntries : podcastEntries.filter(entrie => entrie.title.label.includes(filterText)))
     }
 
-    async function  getPodcastsInfo(){
-        const {feed} = await getPodcastsData()
-        console.log('feed', feed);
-        setPodcastEntries(feed?.entry)
-        setfilteredEntries(feed?.entry)
-    }
 }
 
 export default Main;
