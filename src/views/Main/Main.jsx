@@ -11,7 +11,7 @@ function Main() {
     useEffect(() => {
         podcastsData.subscribe(podcastsValue => {
             if(podcastsValue){
-                console.log('podcastsValue', podcastsValue.entry);
+                // console.log('podcastsValue', podcastsValue.entry);
                 setPodcastEntries(podcastsValue.entry)
                 setfilteredEntries(podcastsValue.entry)
             }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './PodcastDetail.scss';
 import { getPodcastDetail } from '../../services/podcasts-data';
+import { checkDetailDataValidity } from '../../services/podcast-subscriber';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function PodcastDetail() {
@@ -47,7 +48,7 @@ function PodcastDetail() {
     )
 
     async function getPodcastsData(){
-        setPodcastDetail(await getPodcastDetail(podcastId))
+        setPodcastDetail(await checkDetailDataValidity(podcastId))
     }
 
     function formatDate(dateString){

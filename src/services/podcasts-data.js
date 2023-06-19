@@ -6,6 +6,7 @@ export const podcastsData = new BehaviorSubject(null)
 export function managePodcastData(){
     dataSubscriber()
     const savedData = JSON.parse(localStorage.getItem('podcastInfo'))
+    const detailSavedData = JSON.parse(localStorage.getItem('detailData'))
     const savedTime = localStorage.getItem('savedTime')
     const timeDifference = new Date().getTime() - savedTime || 0;
 
@@ -31,14 +32,18 @@ export async function getPodcastDetail(podcastId){
       throw new Error('Network response was not ok.')
     }).then(async res => {
         const parsedData = JSON.parse(res?.contents)
-        return {...parsedData.results[0], ...await getPodcastFeed(parsedData.results[0].feedUrl), }
+        const wholeData =  {id: podcastId, ...parsedData.results[0], ...await getPodcastFeed(parsedData.results[0].feedUrl)}
+        const userStoredDetailData = JSON.parse(localStorage.getItem("detailData")) || [];
+        const newData = [...userStoredDetailData.filter(podcast => podcast.id !== podcastId), wholeData]
+        localStorage.setItem("detailData", JSON.stringify(newData))
+        return wholeData;
     })
 }
 
 async function getPodcastFeed(feed){
     return await fetch(`https://api.allorigins.win/get?charset=ISO-8859-1&url=${feed}`)
         .then((response) => response.json())
-        .then((rawData) =>  new window.DOMParser().parseFromString(rawData.contents,'text/xml'))
+        .then((rawData) => new window.DOMParser().parseFromString(rawData.contents,'text/xml'))
         .then((data) => {
             if (!data) {
                 throw new Error('Data could not be retrieved from the API')
@@ -50,6 +55,7 @@ async function getPodcastFeed(feed){
 function getEpisodes(data){
     const formattedEpisodes = {
         description: '',
+        savedTime: new Date().getTime(),
         episodes: [],
     }
     const items = data.querySelectorAll('item')
