@@ -9,7 +9,7 @@ function Header() {
 
     return (
         <div className="header">
-            <h3 onClick={() => navigate('/')}>PODCAST NOVA</h3>
+            <h3 onClick={() => navigate('/')}>Podcaster</h3>
         </div>
     )
 }

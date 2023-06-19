@@ -1,6 +1,7 @@
 .header{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: var(--header-height);
+    padding: 0 1rem;
 }
