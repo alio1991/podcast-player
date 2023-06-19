@@ -1,8 +1,13 @@
 import {getPodcastsData} from './podcasts-data'
 
 export async function dataSubscriber(){
-    const now = new Date();
-    const nextExecutionTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-    const timeRemaining = nextExecutionTime - now;
-    setInterval(getPodcastsData, timeRemaining);
+    setInterval(checkDataValidity, 30 * 60 * 1000);
+}
+
+function checkDataValidity(){
+    const savedTime = localStorage.getItem('savedTime')
+    const timeDifference = new Date().getTime() - savedTime || 0;
+    if (timeDifference > 24 * 60 * 60 * 1000) {
+        getPodcastsData(); 
+    }
 }

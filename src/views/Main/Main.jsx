@@ -11,8 +11,8 @@ function Main() {
     useEffect(() => {
         podcastsData.subscribe(podcastsValue => {
             if(podcastsValue){
-                setPodcastEntries(podcastsValue.feed.entry)
-                setfilteredEntries(podcastsValue.feed.entry)
+                setPodcastEntries(podcastsValue.entry)
+                setfilteredEntries(podcastsValue.entry)
             }
         })
     }, []);
