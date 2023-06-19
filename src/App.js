@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import  Header  from './components/Header/Header'
 import './App.css';
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PodcastChapter from './views/PodcastChapter/PodcastChapter'
+import PodcastDetail from './views/PodcastDetail/PodcastDetail'
+import Main from './views/Main/Main'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header></Header>
+        <Routes>
+            <Route exact path="/" element={<Main></Main>} />
+            <Route path="/detail" element={<PodcastDetail></PodcastDetail>} />
+            <Route path="/chapter" element={<PodcastChapter></PodcastChapter>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
