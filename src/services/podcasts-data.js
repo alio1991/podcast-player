@@ -24,7 +24,10 @@ export async function getPodcastsData(limit=100, genre=1310){
     localStorage.setItem('savedTime', new Date().getTime())
 }
 
-// export const getPodcastDetail = (podcastId)=>{
-//     const url = new URL(`https://itunes.apple.com/lookup?id=${podcastId}`)
-//     return fetch(url).then((res) => res.json());
-// }
+export async function getPodcastDetail(podcastId){
+    return await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${podcastId}`)}`)
+    .then(response => {
+      if (response.ok) return response.json()
+      throw new Error('Network response was not ok.')
+    }).then(res => res?.contents)
+}

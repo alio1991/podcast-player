@@ -26,7 +26,7 @@ function Main() {
             </div>
             <div className="podcast-cards">
                 {filteredEntries.map((entry, i)=> 
-                    <PodcastCard key={i} title={entry.title.label} image={entry["im:image"][0].label} author={entry["im:artist"].label}></PodcastCard>
+                    <PodcastCard key={i} id={entry.id.attributes["im:id"]} title={entry.title.label} image={entry["im:image"][0].label} author={entry["im:artist"].label}></PodcastCard>
                 )}
             </div>
         </div>
