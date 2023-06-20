@@ -5,13 +5,16 @@
         text-align: justify;
         margin: 1rem;
         padding: 1rem;
-        -webkit-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
-        -moz-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
-        box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
         height: fit-content;
         
         p{
             font-style: italic;
+        }
+
+        audio{
+            border: 1px solid black;
+            border-radius: 1rem;
+            width: 100%;
         }
     }
     

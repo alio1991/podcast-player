@@ -7,7 +7,7 @@ function PodcastResume({podcastDetail, podcastId}) {
     const navigate = useNavigate();
 
     return (
-        <div className="podcast-resume">
+        <div className="podcast-resume main-shadow">
             <img onClick={() => navigate(`/podcast/${podcastId}`)} src={podcastDetail?.artworkUrl100} alt="" />
             <div className="owner-data">
                 <h4>{podcastDetail?.collectionName}</h4>

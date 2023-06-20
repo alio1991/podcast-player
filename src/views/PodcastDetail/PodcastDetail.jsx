@@ -20,9 +20,9 @@ function PodcastDetail() {
         <div className="podcast-detail">
             <PodcastResume podcastDetail={podcastDetail} podcastId={podcastId}></PodcastResume>
             <div className="episodes-container">
-                <h2>Episodes: {podcastDetail?.episodes?.length}</h2>
-                <div className="episodes">
-                    <div className="episode episode-header" key="header">
+                <h2 className="main-shadow">Episodes: {podcastDetail?.episodes?.length}</h2>
+                <div className="episodes main-shadow">
+                    <div className="episode episode-header main-shadow" key="header">
                         <div><b>Title</b></div>
                         <div><b>Date</b></div>
                         <div><b>Duration</b></div>

@@ -20,7 +20,7 @@ function PodcastChapter() {
     return (
         <div className="podcast-chapter">
             <PodcastResume podcastDetail={podcastData} podcastId={podcastId}></PodcastResume>
-            <div className="episode-description">
+            <div className="episode-description main-shadow">
                 <h2>{episodeData?.title}</h2>
                 <div dangerouslySetInnerHTML={{ __html: episodeData?.description?.replace('<![CDATA[', '').replace(']]>', '') }}></div>
                 <audio controls src={episodeData?.audio} type="audio/mpeg"></audio>
