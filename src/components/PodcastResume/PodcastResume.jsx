@@ -15,7 +15,7 @@ function PodcastResume({podcastDetail, podcastId}) {
             </div>
             <hr />
             <p><b>Description:</b></p>
-            <p>{podcastDetail?.description}</p>
+            <p className="description">{podcastDetail?.description}</p>
         </div>
     )
 }
