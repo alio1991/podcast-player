@@ -6,7 +6,6 @@ export const podcastsData = new BehaviorSubject(null)
 export function managePodcastData(){
     dataSubscriber()
     const savedData = JSON.parse(localStorage.getItem('podcastInfo'))
-    const detailSavedData = JSON.parse(localStorage.getItem('detailData'))
     const savedTime = localStorage.getItem('savedTime')
     const timeDifference = new Date().getTime() - savedTime || 0;
 

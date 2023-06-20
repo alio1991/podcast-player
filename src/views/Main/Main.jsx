@@ -20,11 +20,11 @@ function Main() {
     return (
         <div className="main">
             <div className="filter-section">
-                <h1>{filteredEntries.length}</h1>
+                <h1>{filteredEntries?.length}</h1>
                 <input onKeyUp={(ev)=> onFilterContentChanges(ev)} type="text" />
             </div>
             <div className="podcast-cards">
-                {filteredEntries.map((entry, i)=> 
+                {filteredEntries?.map((entry, i)=> 
                     <PodcastCard key={i} id={entry.id.attributes["im:id"]} title={entry["im:name"].label} image={entry["im:image"][0].label} author={entry["im:artist"].label}></PodcastCard>
                 )}
             </div>
