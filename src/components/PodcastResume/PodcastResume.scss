@@ -1,12 +1,26 @@
 .podcast-resume{
-    width: 30%;
+    width: 20%;
     height: fit-content;
-    margin: 3rem;
+    margin: 1rem 3rem;
     -webkit-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
     -moz-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
     box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
 
+    *{
+        hyphens: auto;
+        text-align: justify;
+    }
+    h4, p{
+        margin: 0;
+    }
     img, .author{
         cursor: pointer;
+    }
+
+    .owner-data{
+        margin: 1rem 0;
     }
 }

@@ -63,7 +63,7 @@ function getEpisodes(data){
         ? data.getElementsByTagName('itunes:summary')
         : data.getElementsByTagName('description')
 
-    formattedEpisodes.description = description[0].innerHTML
+    formattedEpisodes.description = description[0]?.innerHTML
 
     items.forEach((element) => {
         const id =
@@ -72,11 +72,11 @@ function getEpisodes(data){
         const episode = {
             id: id.replace('<![CDATA[', '').replace(']]>', ''),
             title:
-            element.getElementsByTagName('itunes:title')[0]?.innerHTML ||
-            element.getElementsByTagName('title')[0].innerHTML,
+            element.getElementsByTagName('itunes:title')[0]?.innerHTML.replace('<![CDATA[', '').replace(']]>', '') ||
+            element.getElementsByTagName('title')[0].innerHTML.replace('<![CDATA[', '').replace(']]>', ''),
             date: element.getElementsByTagName('pubDate')[0].innerHTML,
             duration: element.getElementsByTagName('itunes:duration')[0].innerHTML,
-            description: element.getElementsByTagName('description')[0].innerHTML,
+            description: element.getElementsByTagName('description')[0].innerHTML.replace('<![CDATA[', '').replace(']]>', ''),
             audio: element.getElementsByTagName('enclosure')[0].getAttribute('url'),
         }
 

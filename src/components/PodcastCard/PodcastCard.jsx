@@ -13,8 +13,8 @@ function PodcastCard({image, title, author, id}) {
     return (
         <div className="podcast-card" onClick={() => navigate(`/podcast/${id}`)}>
             <img src={image} alt="" />
-            <h2>{title.length < maxTitleLength ? title : title.slice(0, maxTitleLength) + '...'}</h2>
-            <h3>{author.length < maxAuthorLength ? author : author.slice(0, maxAuthorLength) + '...'}</h3>
+            <h3>{title.length < maxTitleLength ? title : title.slice(0, maxTitleLength) + '...'}</h3>
+            <p>{author.length < maxAuthorLength ? author : author.slice(0, maxAuthorLength) + '...'}</p>
         </div>
     )
 }

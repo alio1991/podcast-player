@@ -20,11 +20,9 @@ function PodcastChapter() {
     return (
         <div className="podcast-chapter">
             <PodcastResume podcastDetail={podcastData} podcastId={podcastId}></PodcastResume>
-            <div>
-                <div className="episode-description">
-                    <h2>{episodeData.title}</h2>
-                    <p>{episodeData.description}</p>
-                </div>
+            <div className="episode-description">
+                <h2>{episodeData?.title}</h2>
+                <p>{episodeData?.description}</p>
                 <audio controls src={episodeData?.audio} type="audio/mpeg"></audio>
             </div>
         </div>

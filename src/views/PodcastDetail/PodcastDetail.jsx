@@ -15,12 +15,6 @@ function PodcastDetail() {
             getPodcastsData()
         }
     },[podcastId])
-    useEffect(()=> {
-        if(podcastDetail){
-            console.log('podcastDetail',podcastDetail);
-        }
-    },[podcastDetail])
-
 
     return (
         <div className="podcast-detail">
