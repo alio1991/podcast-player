@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './PodcastDetail.scss';
-import { getPodcastDetail } from '../../services/podcasts-data';
 import { checkDetailDataValidity } from '../../services/podcast-subscriber';
 import { useNavigate, useParams } from 'react-router-dom';
+import PodcastResume from '../../components/PodcastResume/PodcastResume';
 
 function PodcastDetail() {
     const navigate = useNavigate();
@@ -15,18 +15,16 @@ function PodcastDetail() {
             getPodcastsData()
         }
     },[podcastId])
+    useEffect(()=> {
+        if(podcastDetail){
+            console.log('podcastDetail',podcastDetail);
+        }
+    },[podcastDetail])
 
 
     return (
         <div className="podcast-detail">
-            <div className="podcast-resume">
-                <img src={podcastDetail?.artworkUrl100} alt="" />
-                <h3>{podcastDetail?.collectionName}</h3>
-                <p>by {podcastDetail?.trackName}</p>
-                <hr />
-                <p><b>Description:</b></p>
-                <p>{podcastDetail?.description}</p>
-            </div>
+            <PodcastResume podcastDetail={podcastDetail} podcastId={podcastId}></PodcastResume>
             <div className="episodes-container">
                 <h2>Episodes: {podcastDetail?.episodes?.length}</h2>
                 <div className="episodes">

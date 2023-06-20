@@ -1,0 +1,12 @@
+.podcast-resume{
+    width: 30%;
+    height: fit-content;
+    margin: 3rem;
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
+    box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
+
+    img, .author{
+        cursor: pointer;
+    }
+}
