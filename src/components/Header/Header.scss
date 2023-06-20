@@ -1,7 +1,22 @@
 .header{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     height: var(--header-height);
-    padding: 0 1rem;
+    padding: 0 3rem;
+
+    h3{
+        cursor: pointer;
+    }
+    .transition-flag{
+        display: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: green;
+    }
+
+    .show{
+        display: unset
+    }
 }

@@ -20,6 +20,7 @@
             box-shadow: -1px 4px 5px 0px rgba(148,126,148,1);
 
 
+
             .episode{
                 display: flex;
                 justify-content: space-between;
@@ -39,6 +40,21 @@
                         width: 60%;
                     }
                 }
+            }
+
+            .episode-header{
+                div{
+                    display: flex;
+                    justify-content: flex-start;
+                    width: 20%;
+                    padding: 0 0.5rem;
+                    &:first-child{
+                        cursor: none;
+                        color: black;
+                        width: 60%;
+                    }
+                }
+
             }
         }
     }

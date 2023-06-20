@@ -22,7 +22,7 @@ function PodcastDetail() {
             <div className="episodes-container">
                 <h2>Episodes: {podcastDetail?.episodes?.length}</h2>
                 <div className="episodes">
-                    <div className="episode" key="header">
+                    <div className="episode episode-header" key="header">
                         <div><b>Title</b></div>
                         <div><b>Date</b></div>
                         <div><b>Duration</b></div>
