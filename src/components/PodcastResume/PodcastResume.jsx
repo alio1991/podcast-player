@@ -15,7 +15,9 @@ function PodcastResume({podcastDetail, podcastId}) {
             </div>
             <hr />
             <p><b>Description:</b></p>
-            <p className="description">{podcastDetail?.description}</p>
+            <div className="description" dangerouslySetInnerHTML={{ __html: podcastDetail?.description?.replace('<![CDATA[', '').replace(']]>', '') }}></div>
+
+            {/* <p className="description">{podcastDetail?.description?.replace('<![CDATA[', '').replace(']]>', '')}</p> */}
         </div>
     )
 }

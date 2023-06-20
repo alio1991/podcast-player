@@ -53,17 +53,17 @@ async function getPodcastFeed(feed){
 }
 
 function getEpisodes(data){
-    const formattedEpisodes = {
+    const episodesData = {
         description: '',
         savedTime: new Date().getTime(),
         episodes: [],
     }
-    const items = data.querySelectorAll('item')
     const description = data.getElementsByTagName('itunes:summary').length > 0
-        ? data.getElementsByTagName('itunes:summary')
-        : data.getElementsByTagName('description')
+    ? data.getElementsByTagName('itunes:summary')
+    : data.getElementsByTagName('description')
+    const items = data.querySelectorAll('item')
 
-    formattedEpisodes.description = description[0]?.innerHTML
+    episodesData.description = description[0]?.innerHTML
 
     items.forEach((element) => {
         const id =
@@ -76,11 +76,11 @@ function getEpisodes(data){
             element.getElementsByTagName('title')[0].innerHTML.replace('<![CDATA[', '').replace(']]>', ''),
             date: element.getElementsByTagName('pubDate')[0].innerHTML,
             duration: element.getElementsByTagName('itunes:duration')[0].innerHTML,
-            description: element.getElementsByTagName('description')[0].innerHTML.replace('<![CDATA[', '').replace(']]>', ''),
+            description: element.getElementsByTagName('description')[0].innerHTML,
             audio: element.getElementsByTagName('enclosure')[0].getAttribute('url'),
         }
 
-        formattedEpisodes.episodes.push(episode)
+        episodesData.episodes.push(episode)
     })
-    return formattedEpisodes
+    return episodesData
 }
