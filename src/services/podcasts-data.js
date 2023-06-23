@@ -36,7 +36,7 @@ export async function getPodcastDetail(podcastId){
         const newData = [...userStoredDetailData.filter(podcast => podcast.id !== podcastId), wholeData]
         localStorage.setItem("detailData", JSON.stringify(newData))
         return wholeData;
-    })
+    }).catch(err => console.log(err))
 }
 
 async function getPodcastFeed(feed){
@@ -48,7 +48,7 @@ async function getPodcastFeed(feed){
                 throw new Error('Data could not be retrieved from the API')
             }
             return getEpisodes(data)
-        })
+        }).catch(err => console.log(err))
 }
 
 function getEpisodes(data){
