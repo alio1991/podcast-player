@@ -10,7 +10,7 @@ function App() {
   managePodcastData()
   return (
     <div className="App">
-      <Router>
+      <Router basename="/podcast-player">
         <Header></Header>
         <Routes>
             <Route exact path="/" element={<Main></Main>} />
