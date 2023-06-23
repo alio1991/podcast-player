@@ -13,10 +13,8 @@ function PodcastChapter() {
         const detailPodcastData = JSON.parse(localStorage.getItem('detailData'))?.find(elem=> elem.id === podcastId);
         setPodcastData(detailPodcastData)
         setEpisodeData(detailPodcastData.episodes.find(episode=> episode.id === episodeId))
-
-    }, [])
+    }, [episodeId, podcastId])
     
-    var audio = document.getElementById("myAudio");
     return (
         <div className="podcast-chapter">
             <PodcastResume podcastDetail={podcastData} podcastId={podcastId}></PodcastResume>
